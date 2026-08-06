@@ -18,7 +18,7 @@ Soulscapes é um jogo 2D narrativo e contemplativo sobre memória, emoções, au
 
 
 
-## 🎮 Jogar a demo
+## Jogar a demo
 
 **GX.games:**  
 https://gx.games/games/bdwxxw/soulscapes-demo-2026/
@@ -39,7 +39,7 @@ Soulscapes foi desenvolvido como projeto acadêmico e busca oferecer uma experi�
 - adaptável a diferentes sensibilidades;
 - voltada à reflexão emocional e ao autoconhecimento.
 
-## ✨ Funcionalidades da demo
+## Funcionalidades da demo
 
 - Exploração 2D side-scrolling
 - Movimentação, corrida e pulo
@@ -76,7 +76,7 @@ A demo possui recursos pensados para reduzir sobrecarga sensorial e permitir uma
 - opções de contraste;
 - pausa sensorial.
 
-## 🎨 Direção artística
+## Direção artística
 
 A identidade visual de Soulscapes combina fantasia melancólica com ilustração de livro infantil.
 
@@ -90,7 +90,7 @@ Principais características:
 - paleta fria e dessaturada;
 - tons de azul acinzentado, sálvia, teal e lavanda.
 
-## 🛠️ Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - GameMaker
 - GML
@@ -100,7 +100,7 @@ Principais características:
 - GitHub
 - GX.games
 
-## 📂 Como abrir o projeto
+## Como abrir o projeto
 
 1. Clone ou baixe este repositório.
 2. Instale o GameMaker.
@@ -111,7 +111,7 @@ Principais características:
 4. Aguarde o carregamento dos recursos.
 5. Clique em **Run** para executar o jogo.
 
-## 🗂️ Estrutura do projeto
+## Estrutura do projeto
 
 - `objects/` — objetos e lógica do jogo
 - `rooms/` — salas e mapas
@@ -122,7 +122,7 @@ Principais características:
 - `options/` — configurações do projeto
 - `Soulscapes.yyp` — arquivo principal do GameMaker
 
-## 🧭 Fluxo atual da demo
+## Fluxo atual da demo
 
 1. Menu principal
 2. Despertar de Kiran
@@ -132,24 +132,24 @@ Principais características:
 6. Retorno e diálogo
 7. Entrada no templo
 
-## 🚧 Status do projeto
+## Status do projeto
 
 **Versão:** Demo acadêmica 0.1  
 **Estado:** MVP jogável em desenvolvimento
 
 Alguns sistemas, diálogos, artes e áreas ainda podem receber alterações e melhorias.
 
-## 🎓 Contexto acadêmico
+## Contexto acadêmico
 
 Soulscapes foi desenvolvido como projeto acadêmico com o objetivo de explorar como jogos digitais podem oferecer experiências acolhedoras de reflexão emocional e autoconhecimento.
 
-## 👤 Desenvolvimento
+## Desenvolvimento
 
 **Lime4idan Studio**
 
 Projeto, programação, narrativa e direção visual.
 
-## 📄 Uso do projeto
+## Uso do projeto
 
 Este repositório foi disponibilizado para avaliação acadêmica e apresentação do MVP.
 
