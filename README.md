@@ -13,7 +13,6 @@ Uma jornada delicada por memórias, emoções e paisagens interiores.
 
 Soulscapes é um jogo 2D narrativo e contemplativo sobre memória, emoções, autoconhecimento e acolhimento sensorial.
 
-🎮 Jogar a demo · 📂 Ver o código · 🌿 Sobre o projeto
 
 </div>
 
@@ -22,7 +21,7 @@ Soulscapes é um jogo 2D narrativo e contemplativo sobre memória, emoções, au
 ## 🎮 Jogar a demo
 
 **GX.games:**  
-COLE_AQUI_O_LINK_DA_DEMO
+https://gx.games/games/bdwxxw/soulscapes-demo-2026/
 
 > Recomendado para computador com teclado.
 
