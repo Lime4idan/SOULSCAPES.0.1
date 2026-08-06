@@ -55,7 +55,7 @@ Soulscapes foi desenvolvido como projeto acadêmico e busca oferecer uma experi�
 - Configurações de acessibilidade
 - Música e efeitos sonoros
 
-## ⌨️ Controles
+## Controles
 
 | Ação | Teclas |
 |---|---|
@@ -65,7 +65,7 @@ Soulscapes foi desenvolvido como projeto acadêmico e busca oferecer uma experi�
 | Interagir | `E` |
 | Pausar ou voltar | `Esc` |
 
-## ♿ Acessibilidade
+## Acessibilidade
 
 A demo possui recursos pensados para reduzir sobrecarga sensorial e permitir uma experiência mais confortável:
 
