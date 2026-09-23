@@ -68,7 +68,7 @@ if (
     draw_text(
         640,
         731,
-        "E  Coletar fragmento"
+        "E  Collect fragment"
     );
 }
 
@@ -122,7 +122,7 @@ if (coletando) {
     draw_text(
         640,
         120,
-        "Fragmento encontrado  "
+        "Fragment found  "
         + string(total_coletado)
         + " / 4"
     );

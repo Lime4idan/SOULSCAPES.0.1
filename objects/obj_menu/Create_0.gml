@@ -16,10 +16,10 @@ botao_y = [
 ];
 
 botao_texto = [
-    "Novo Jogo",
-    "Continuar",
-    "Configurações",
-    "Créditos"
+    "New Game",
+    "Continue",
+    "Settings",
+    "Credits"
 ];
 
 // Continuar permanece bloqueado até criarmos o save

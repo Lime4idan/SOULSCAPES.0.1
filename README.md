@@ -1,160 +1,116 @@
 <div align="center">
 
-✦ Soulscapes ✦
+# ✦ Soulscapes ✦
 
-Uma jornada delicada por memórias, emoções e paisagens interiores.
+A gentle journey through memories, emotions, and inner landscapes.
 
 <p>
   <img alt="GameMaker" src="https://img.shields.io/badge/Engine-GameMaker-6A7BA2?style=for-the-badge">
-  <img alt="GML" src="https://img.shields.io/badge/Linguagem-GML-8AA6A3?style=for-the-badge">
+  <img alt="GML" src="https://img.shields.io/badge/Language-GML-8AA6A3?style=for-the-badge">
   <img alt="Status" src="https://img.shields.io/badge/Status-Demo%200.1-B39BC8?style=for-the-badge">
-  <img alt="Plataforma" src="https://img.shields.io/badge/Plataforma-Desktop-91A8C8?style=for-the-badge">
+  <img alt="Platform" src="https://img.shields.io/badge/Platform-Desktop-91A8C8?style=for-the-badge">
 </p>
 
-Soulscapes é um jogo 2D narrativo e contemplativo sobre memória, emoções, autoconhecimento e acolhimento sensorial.
-
+Soulscapes is a contemplative 2D narrative game about memory, emotions, self-discovery, and sensory comfort.
 
 </div>
 
+## Play the demo
 
+**GX.games:** https://gx.games/games/bdwxxw/soulscapes-demo-2026/
 
-## Jogar a demo
+> A desktop computer and keyboard are recommended.
 
-**GX.games:**  
-https://gx.games/games/bdwxxw/soulscapes-demo-2026/
+## About the game
 
-> Recomendado para computador com teclado.
+Kiran wakes in an unfamiliar forest with no memory of how they arrived. By exploring ruins, talking to characters, and finding fragments scattered throughout the world, the player begins to reconstruct pieces of a forgotten story.
 
-## 📖 Sobre o jogo
+Created as an academic project, Soulscapes aims to provide an experience that is calm, visually welcoming, focused on exploration and narrative, adaptable to different sensitivities, and grounded in emotional reflection.
 
-Kiran desperta em uma floresta desconhecida sem conseguir lembrar como chegou até ali.
+## Demo features
 
-Ao explorar ruínas, conversar com personagens e encontrar fragmentos espalhados pelo cenário, o jogador começa a reconstruir pequenas partes de uma história esquecida.
+- 2D side-scrolling exploration
+- Walking, running, and jumping
+- Dialogue system with conversation choices
+- Character and object interactions
+- Fragment collection and event-driven narrative progression
+- Temple entrance and exit sequence
+- Main menu and pause menu
+- Sensory break mode and accessibility settings
+- Music and sound effects
 
-Soulscapes foi desenvolvido como projeto acadêmico e busca oferecer uma experiência:
+## Controls
 
-- calma e contemplativa;
-- visualmente acolhedora;
-- focada em exploração e narrativa;
-- adaptável a diferentes sensibilidades;
-- voltada à reflexão emocional e ao autoconhecimento.
+| Action | Keys |
+| --- | --- |
+| Move | `A` / `D` or `←` / `→` |
+| Run | `Shift` |
+| Jump | `Z` or `X` |
+| Interact | `E` |
+| Pause or go back | `Esc` |
 
-## Funcionalidades da demo
+## Accessibility
 
-- Exploração 2D side-scrolling
-- Movimentação, corrida e pulo
-- Sistema de diálogos
-- Escolhas de conversa
-- Interações com personagens e objetos
-- Coleta de fragmentos
-- Progressão narrativa por eventos
-- Entrada e saída do templo
-- Menu principal
-- Menu de pausa
-- Pausa sensorial
-- Configurações de acessibilidade
-- Música e efeitos sonoros
+The demo includes features designed to reduce sensory overload and make the experience more comfortable:
 
-## Controles
+- low-stimulation mode;
+- reduced motion;
+- adjustable text speed and size;
+- contrast options;
+- sensory break mode.
 
-| Ação | Teclas |
-|---|---|
-| Movimentar | `A` / `D` ou `←` / `→` |
-| Correr | `Shift` |
-| Pular | `Z` ou `X` |
-| Interagir | `E` |
-| Pausar ou voltar | `Esc` |
+## Art direction
 
-## Acessibilidade
+Soulscapes blends melancholic fantasy with the warmth of a children's picture book. Its visual language uses traditional watercolor, visible paper texture, soft graphite and colored-pencil lines, transparent washes, simplified botanical forms, and a cool, desaturated palette of blue-gray, sage, teal, and lavender.
 
-A demo possui recursos pensados para reduzir sobrecarga sensorial e permitir uma experiência mais confortável:
+## Technology
 
-- modo de baixo estímulo;
-- redução de animações;
-- ajuste da velocidade do texto;
-- ajuste do tamanho do texto;
-- opções de contraste;
-- pausa sensorial.
-
-## Direção artística
-
-A identidade visual de Soulscapes combina fantasia melancólica com ilustração de livro infantil.
-
-Principais características:
-
-- aquarela tradicional;
-- textura visível de papel;
-- linhas suaves de grafite e lápis de cor;
-- lavados transparentes;
-- formas botânicas simplificadas;
-- paleta fria e dessaturada;
-- tons de azul acinzentado, sálvia, teal e lavanda.
-
-## Tecnologias utilizadas
-
-- GameMaker
-- GML
-- Krita
-- IbisPaint X
-- Git
-- GitHub
+- GameMaker and GML
+- Krita and IbisPaint X
+- Git and GitHub
 - GX.games
 
-## Como abrir o projeto
+## Open the project
 
-1. Clone ou baixe este repositório.
-2. Instale o GameMaker.
-3. Abra o arquivo principal:
+1. Clone or download this repository.
+2. Install GameMaker.
+3. Open `JOGO CS.yyp`.
+4. Wait for the assets to load.
+5. Select **Run** to start the game.
 
-`Soulscapes.yyp`
+## Project structure
 
-4. Aguarde o carregamento dos recursos.
-5. Clique em **Run** para executar o jogo.
+- `objects/` — game objects and logic
+- `rooms/` — rooms and maps
+- `sprites/` — characters, environments, and interface art
+- `sounds/` — music and sound effects
+- `fonts/` — project fonts
+- `options/` — GameMaker project settings
+- `JOGO CS.yyp` — main GameMaker project file
 
-## Estrutura do projeto
+## Current demo flow
 
-- `objects/` — objetos e lógica do jogo
-- `rooms/` — salas e mapas
-- `sprites/` — personagens, cenários e interface
-- `sounds/` — músicas e efeitos sonoros
-- `scripts/` — funções auxiliares
-- `fonts/` — fontes utilizadas
-- `options/` — configurações do projeto
-- `Soulscapes.yyp` — arquivo principal do GameMaker
+1. Main menu
+2. Kiran wakes up
+3. Forest exploration
+4. Meeting Lorun
+5. Collecting the fragment
+6. Returning for another conversation
+7. Entering the temple
 
-## Fluxo atual da demo
+## Project status
 
-1. Menu principal
-2. Despertar de Kiran
-3. Exploração da floresta
-4. Encontro com Lorun
-5. Coleta do fragmento
-6. Retorno e diálogo
-7. Entrada no templo
+**Version:** Academic demo 0.1  
+**Status:** Playable MVP in active development
 
-## Status do projeto
+Some systems, dialogue, artwork, and areas may still change as development continues.
 
-**Versão:** Demo acadêmica 0.1  
-**Estado:** MVP jogável em desenvolvimento
+## Credits and usage
 
-Alguns sistemas, diálogos, artes e áreas ainda podem receber alterações e melhorias.
+**Lime4idan Studio** — concept, programming, narrative, and visual direction.
 
-## Contexto acadêmico
-
-Soulscapes foi desenvolvido como projeto acadêmico com o objetivo de explorar como jogos digitais podem oferecer experiências acolhedoras de reflexão emocional e autoconhecimento.
-
-## Desenvolvimento
-
-**Lime4idan Studio**
-
-Projeto, programação, narrativa e direção visual.
-
-## Uso do projeto
-
-Este repositório foi disponibilizado para avaliação acadêmica e apresentação do MVP.
-
-Os códigos, artes, personagens, músicas e demais recursos não podem ser redistribuídos comercialmente sem autorização.
+This repository is available for academic evaluation and MVP presentation. Its code, artwork, characters, music, and other assets may not be redistributed commercially without permission.
 
 ---
 
-### ✦ Algumas memórias não desaparecem. Elas apenas esperam pela luz certa. ✦
+### ✦ Some memories never disappear. They simply wait for the right light. ✦

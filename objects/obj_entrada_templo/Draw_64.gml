@@ -29,10 +29,10 @@ var entrada_liberada =
 var texto_interacao;
 
 if (entrada_liberada) {
-    texto_interacao = "E  Entrar no templo";
+    texto_interacao = "E  Enter the temple";
 }
 else {
-    texto_interacao = "E  Examinar entrada";
+    texto_interacao = "E  Examine entrance";
 }
 
 

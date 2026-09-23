@@ -148,7 +148,7 @@ if (ativo) {
         draw_text(
             x2 - 25,
             y2 - 18,
-            "Espaço  >"
+            "Space  >"
         );
     }
 

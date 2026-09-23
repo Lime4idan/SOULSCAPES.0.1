@@ -33,7 +33,7 @@ if (perto_do_vitral && !puzzle_ativo && !global.vitral_resolvido) {
         draw_set_color(make_color_rgb(55, 65, 95));
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
-        draw_text(640, 731, "E  Examinar vitral");
+        draw_text(640, 731, "E  Examine stained glass");
     }
 }
 
@@ -115,14 +115,14 @@ draw_set_color(cor_texto);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-draw_text_transformed(640, 95, "Vitral da Memória", 1.35, 1.35, 0);
+draw_text_transformed(640, 95, "Stained Glass of Memory", 1.35, 1.35, 0);
 
 draw_set_alpha(0.72);
 draw_set_color(cor_texto_suave);
-draw_text(640, 140, "Fragmento central restaurado");
+draw_text(640, 140, "Central fragment restored");
 
 draw_set_alpha(0.62);
-draw_text(640, 176, "Cacos encontrados: " + string(cacos_encontrados) + " / 4");
+draw_text(640, 176, "Shards found: " + string(cacos_encontrados) + " / 4");
 
 draw_set_alpha(0.72);
 draw_set_color(cor_borda_clara);
@@ -289,7 +289,7 @@ for (var peca_i = 0; peca_i < array_length(peca_colocada); peca_i++) {
         draw_set_color(cor_texto_suave);
         draw_set_halign(fa_center);
         draw_set_valign(fa_middle);
-        draw_text(peca_inicio_x[peca_i], peca_inicio_y[peca_i] + 72, "Encontrado");
+        draw_text(peca_inicio_x[peca_i], peca_inicio_y[peca_i] + 72, "Found");
     }
     else {
         draw_set_alpha(0.30);
@@ -306,7 +306,7 @@ for (var peca_i = 0; peca_i < array_length(peca_colocada); peca_i++) {
         );
 
         draw_set_alpha(0.42);
-        draw_text(peca_inicio_x[peca_i], peca_inicio_y[peca_i] + 72, "Não encontrado");
+        draw_text(peca_inicio_x[peca_i], peca_inicio_y[peca_i] + 72, "Not found");
     }
 }
 
@@ -320,34 +320,34 @@ draw_set_valign(fa_middle);
 if (concluindo_puzzle) {
     draw_set_alpha(1);
     draw_set_color(cor_texto);
-    draw_text_transformed(640, 682, "A memória desperta...", 1.12, 1.12, 0);
+    draw_text_transformed(640, 682, "The memory awakens...", 1.12, 1.12, 0);
 
     draw_set_alpha(0.75);
-    draw_text(640, 720, "Vitral completo: 5 / 5");
+    draw_text(640, 720, "Stained glass complete: 5 / 5");
 }
 else if (cacos_encontrados < 4) {
     draw_set_alpha(0.82);
     draw_set_color(cor_texto);
-    draw_text(640, 676, "Ainda existem fragmentos espalhados pela floresta.");
+    draw_text(640, 676, "Fragments are still scattered throughout the forest.");
 
     draw_set_alpha(0.62);
     draw_set_color(cor_texto_suave);
-    draw_text(640, 712, "Vitral completo: " + string(fragmentos_totais_restaurados) + " / 5");
+    draw_text(640, 712, "Stained glass complete: " + string(fragmentos_totais_restaurados) + " / 5");
 
     draw_set_alpha(0.42);
-    draw_text(640, 742, "Esc  sair");
+    draw_text(640, 742, "Esc  exit");
 }
 else {
     draw_set_alpha(0.82);
     draw_set_color(cor_texto);
-    draw_text(640, 676, "Arraste cada caco até sua silhueta no vitral.");
+    draw_text(640, 676, "Drag each shard to its silhouette in the stained glass.");
 
     draw_set_alpha(0.62);
     draw_set_color(cor_texto_suave);
-    draw_text(640, 712, "Vitral completo: " + string(fragmentos_totais_restaurados) + " / 5");
+    draw_text(640, 712, "Stained glass complete: " + string(fragmentos_totais_restaurados) + " / 5");
 
     draw_set_alpha(0.42);
-    draw_text(640, 742, "Esc  sair");
+    draw_text(640, 742, "Esc  exit");
 }
 
 

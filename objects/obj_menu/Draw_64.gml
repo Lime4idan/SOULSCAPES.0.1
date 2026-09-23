@@ -282,7 +282,7 @@ if (mostrando_creditos) {
     draw_text_transformed(
         640,
         215,
-        "Créditos",
+        "Credits",
         1.8,
         1.8,
         0
@@ -296,7 +296,7 @@ if (mostrando_creditos) {
     draw_text_ext(
         640,
         285,
-        "SOULSCAPES\n\nDesenvolvimento, arte e roteiro:\nAlicia\n\nProjeto desenvolvido como trabalho escolar.\n\nAgradecimentos aos professores,\norientadores e participantes da pesquisa.",
+        "SOULSCAPES\n\nDevelopment, art, and writing:\nAlicia\n\nCreated as an academic project.\n\nSpecial thanks to the teachers,\nmentors, and research participants.",
         32,
         570
     );
@@ -354,7 +354,7 @@ if (mostrando_creditos) {
     draw_text(
         640,
         (voltar_y1 + voltar_y2) / 2,
-        "Voltar"
+        "Back"
     );
 
     // Restaurar
@@ -472,7 +472,7 @@ if (mostrando_configuracoes) {
     draw_text_transformed(
         635,
         120,
-        "Configurações",
+        "Settings",
         1.65,
         1.65,
         0
@@ -511,13 +511,13 @@ if (mostrando_configuracoes) {
     draw_set_color(cor_texto);
     draw_set_alpha(0.95);
 
-    draw_text_transformed(165, cfg_y[0], "Volume da música", 1.12, 1.12, 0);
-    draw_text_transformed(165, cfg_y[1], "Volume dos sons", 1.12, 1.12, 0);
-    draw_text_transformed(165, cfg_y[2], "Modo baixo estímulo", 1.12, 1.12, 0);
-    draw_text_transformed(165, cfg_y[3], "Reduzir animações", 1.12, 1.12, 0);
-    draw_text_transformed(165, cfg_y[4], "Velocidade do texto", 1.12, 1.12, 0);
-    draw_text_transformed(165, cfg_y[5], "Tamanho do texto", 1.12, 1.12, 0);
-    draw_text_transformed(165, cfg_y[6], "Contraste", 1.12, 1.12, 0);
+    draw_text_transformed(165, cfg_y[0], "Music volume", 1.12, 1.12, 0);
+    draw_text_transformed(165, cfg_y[1], "Sound volume", 1.12, 1.12, 0);
+    draw_text_transformed(165, cfg_y[2], "Low-stimulation mode", 1.12, 1.12, 0);
+    draw_text_transformed(165, cfg_y[3], "Reduce motion", 1.12, 1.12, 0);
+    draw_text_transformed(165, cfg_y[4], "Text speed", 1.12, 1.12, 0);
+    draw_text_transformed(165, cfg_y[5], "Text size", 1.12, 1.12, 0);
+    draw_text_transformed(165, cfg_y[6], "Contrast", 1.12, 1.12, 0);
 
 
     // ─────────────────────────────────────────
@@ -702,20 +702,20 @@ if (mostrando_configuracoes) {
     // OPÇÕES COM SETAS
     // ─────────────────────────────────────────
     var textos_velocidade = [
-        "Lenta",
+        "Slow",
         "Normal",
-        "Rápida"
+        "Fast"
     ];
 
     var textos_tamanho = [
-        "Pequeno",
+        "Small",
         "Normal",
-        "Grande"
+        "Large"
     ];
 
     var textos_contraste = [
         "Normal",
-        "Alto"
+        "High"
     ];
 
     draw_set_alpha(1);
@@ -815,7 +815,7 @@ if (mostrando_configuracoes) {
     draw_text_transformed(
         635,
         cfg_y[7],
-        "Voltar",
+        "Back",
         1.15,
         1.15,
         0

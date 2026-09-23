@@ -99,18 +99,18 @@ if (
                 iniciar_dialogo([
                     {
                         nome: "Kiran",
-                        texto: "A entrada parece estar selada..."
+                        texto: "The entrance appears to be sealed..."
                     },
                     {
                         nome: "Kiran",
-                        texto: "Talvez Lorun saiba o que fazer."
+                        texto: "Maybe Lorun knows what to do."
                     }
                 ]);
             }
         }
         else {
             show_debug_message(
-                "ERRO: não existe obj_dialogo na Room1."
+                "ERROR: obj_dialogo does not exist in Room1."
             );
         }
     }

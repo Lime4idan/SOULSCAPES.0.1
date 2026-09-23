@@ -60,7 +60,7 @@ draw_set_color(
 draw_text(
     640,
     731,
-    "E  Sair do templo"
+    "E  Leave the temple"
 );
 
 

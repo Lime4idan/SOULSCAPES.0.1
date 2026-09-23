@@ -184,7 +184,7 @@ if (tela_pause == 0) {
     draw_text_transformed(
         636,
         125,
-        "Pausa",
+        "Paused",
         1.52,
         1.52,
         0
@@ -394,7 +394,7 @@ if (tela_pause == 0) {
     draw_text(
         636,
         650,
-        "Esc  voltar ao jogo"
+        "Esc  return to game"
     );
 }
 
@@ -412,7 +412,7 @@ if (tela_pause == 1) {
     draw_text_transformed(
         636,
         130,
-        "Controles",
+        "Controls",
         1.52,
         1.52,
         0
@@ -475,7 +475,7 @@ if (tela_pause == 1) {
     desenhar_tecla_pause(
         415,
         460,
-        "Espaço",
+        "Space",
         104
     );
 
@@ -494,12 +494,12 @@ if (tela_pause == 1) {
     draw_set_halign(fa_left);
     draw_set_valign(fa_middle);
 
-    draw_text(570, 237, "Mover");
-    draw_text(570, 297, "Correr");
-    draw_text(570, 357, "Pular");
-    draw_text(570, 417, "Interagir");
-    draw_text(570, 477, "Avançar diálogo");
-    draw_text(570, 537, "Pausar ou voltar");
+    draw_text(570, 237, "Move");
+    draw_text(570, 297, "Run");
+    draw_text(570, 357, "Jump");
+    draw_text(570, 417, "Interact");
+    draw_text(570, 477, "Continue dialogue");
+    draw_text(570, 537, "Pause or go back");
 
 
     // Botão voltar
@@ -561,7 +561,7 @@ if (tela_pause == 1) {
             controles_draw_y1
             + controles_draw_y2
         ) / 2,
-        "Voltar"
+        "Back"
     );
 }
 
@@ -579,7 +579,7 @@ if (tela_pause == 3) {
     draw_text_transformed(
         636,
         130,
-        "Pausa sensorial",
+        "Sensory break",
         1.48,
         1.48,
         0
@@ -601,26 +601,26 @@ if (tela_pause == 3) {
         resp_tempo mod 12;
 
     var texto_resp =
-        "Inspire devagar";
+        "Breathe in slowly";
 
     var progresso_resp = 0;
 
     if (ciclo_resp < 4) {
         texto_resp =
-            "Inspire devagar";
+            "Breathe in slowly";
 
         progresso_resp =
             ciclo_resp / 4;
     }
     else if (ciclo_resp < 6) {
         texto_resp =
-            "Segure suavemente";
+            "Hold gently";
 
         progresso_resp = 1;
     }
     else {
         texto_resp =
-            "Expire devagar";
+            "Breathe out slowly";
 
         progresso_resp =
             1 - ((ciclo_resp - 6) / 6);
@@ -694,7 +694,7 @@ if (tela_pause == 3) {
     draw_text(
         636,
         525,
-        "Permaneça aqui pelo tempo que precisar."
+        "Stay here for as long as you need."
     );
 
 
@@ -755,7 +755,7 @@ if (tela_pause == 3) {
             sensorial_draw_y1
             + sensorial_draw_y2
         ) / 2,
-        "Voltar"
+        "Back"
     );
 }
 
@@ -789,7 +789,7 @@ if (tela_pause == 2) {
     draw_text_transformed(
         636,
         105,
-        "Configurações",
+        "Settings",
         1.50,
         1.50,
         0
@@ -851,7 +851,7 @@ if (tela_pause == 2) {
     draw_text_transformed(
         165,
         cfg_draw_y[0],
-        "Volume da música",
+        "Music volume",
         1.08,
         1.08,
         0
@@ -860,7 +860,7 @@ if (tela_pause == 2) {
     draw_text_transformed(
         165,
         cfg_draw_y[1],
-        "Volume dos sons",
+        "Sound volume",
         1.08,
         1.08,
         0
@@ -869,7 +869,7 @@ if (tela_pause == 2) {
     draw_text_transformed(
         165,
         cfg_draw_y[2],
-        "Modo baixo estímulo",
+        "Low-stimulation mode",
         1.08,
         1.08,
         0
@@ -878,7 +878,7 @@ if (tela_pause == 2) {
     draw_text_transformed(
         165,
         cfg_draw_y[3],
-        "Reduzir animações",
+        "Reduce motion",
         1.08,
         1.08,
         0
@@ -887,7 +887,7 @@ if (tela_pause == 2) {
     draw_text_transformed(
         165,
         cfg_draw_y[4],
-        "Velocidade do texto",
+        "Text speed",
         1.08,
         1.08,
         0
@@ -896,7 +896,7 @@ if (tela_pause == 2) {
     draw_text_transformed(
         165,
         cfg_draw_y[5],
-        "Tamanho do texto",
+        "Text size",
         1.08,
         1.08,
         0
@@ -905,7 +905,7 @@ if (tela_pause == 2) {
     draw_text_transformed(
         165,
         cfg_draw_y[6],
-        "Contraste",
+        "Contrast",
         1.08,
         1.08,
         0
@@ -1092,20 +1092,20 @@ if (tela_pause == 2) {
 
     // Textos das opções
     var cfg_textos_velocidade = [
-        "Lenta",
+        "Slow",
         "Normal",
-        "Rápida"
+        "Fast"
     ];
 
     var cfg_textos_tamanho = [
-        "Pequeno",
+        "Small",
         "Normal",
-        "Grande"
+        "Large"
     ];
 
     var cfg_textos_contraste = [
         "Normal",
-        "Alto"
+        "High"
     ];
 
     draw_set_alpha(1);
@@ -1265,7 +1265,7 @@ if (tela_pause == 2) {
             cfg_draw_voltar_y1
             + cfg_draw_voltar_y2
         ) / 2,
-        "Voltar"
+        "Back"
     );
 }
 

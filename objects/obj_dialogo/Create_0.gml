@@ -114,9 +114,9 @@ if (
     iniciar_dialogo_com_nome(
         "???",
         [
-            "Onde... eu estou?",
-            "Eu não consigo me lembrar de nada...",
-            "Talvez eu deva explorar este lugar."
+            "Where... am I?",
+            "I cannot remember anything...",
+            "Maybe I should explore this place."
         ]
     );
 }

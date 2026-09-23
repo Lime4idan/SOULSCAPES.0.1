@@ -108,11 +108,11 @@ if (concluindo_puzzle) {
                 iniciar_dialogo([
                     {
                         nome: "Kiran",
-                        texto: "Os fragmentos voltaram ao lugar..."
+                        texto: "The fragments are back in place..."
                     },
                     {
                         nome: "Kiran",
-                        texto: "Há alguma coisa escondida nessa luz."
+                        texto: "Something is hidden in that light."
                     }
                 ]);
             }

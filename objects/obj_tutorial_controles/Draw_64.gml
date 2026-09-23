@@ -63,7 +63,7 @@ draw_set_valign(fa_middle);
 draw_text_transformed(
     55,
     58,
-    "Controles",
+    "Controls",
     1.18,
     1.18,
     0
@@ -83,7 +83,7 @@ draw_set_halign(fa_left);
 draw_text(
     150,
     97,
-    "Mover  (ou setas)"
+    "Move  (or arrows)"
 );
 
 
@@ -99,7 +99,7 @@ draw_set_halign(fa_left);
 draw_text(
     150,
     133,
-    "Correr"
+    "Run"
 );
 
 
@@ -116,7 +116,7 @@ draw_set_halign(fa_left);
 draw_text(
     150,
     169,
-    "Pular"
+    "Jump"
 );
 
 
@@ -132,14 +132,14 @@ draw_set_halign(fa_left);
 draw_text(
     150,
     205,
-    "Interagir"
+    "Interact"
 );
 
 
 // ─────────────────────────────────────────────
 // AVANÇAR DIÁLOGO
 // ─────────────────────────────────────────────
-desenhar_tecla(260, 190, "Espaço", 94);
+desenhar_tecla(260, 190, "Space", 94);
 
 draw_set_alpha(alpha_controles);
 draw_set_color(cor_texto);
@@ -148,7 +148,7 @@ draw_set_halign(fa_left);
 draw_text(
     365,
     205,
-    "Avançar"
+    "Continue"
 );
 
 

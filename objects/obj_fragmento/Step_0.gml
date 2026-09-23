@@ -19,8 +19,8 @@ if (
 
     with (obj_dialogo) {
         iniciar_dialogo([
-            "Um fragmento de vidro...?",
-            "Ele parece estar emitindo uma luz fraca."
+            "A shard of glass...?",
+            "It seems to be giving off a faint light."
         ]);
     }
 

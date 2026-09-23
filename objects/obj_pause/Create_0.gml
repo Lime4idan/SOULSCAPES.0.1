@@ -57,11 +57,11 @@ resp_tempo = 0;
 // BOTÕES DO MENU PRINCIPAL
 // ═════════════════════════════════════════════
 opcoes_pause = [
-    "Pausa sensorial",
-    "Continuar",
-    "Controles",
-    "Configurações",
-    "Voltar ao menu"
+    "Sensory break",
+    "Continue",
+    "Controls",
+    "Settings",
+    "Return to menu"
 ];
 
 botao_pause_y = [

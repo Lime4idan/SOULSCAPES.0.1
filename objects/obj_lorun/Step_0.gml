@@ -25,9 +25,9 @@ if (
         etapa_conversa = 1;
 
         dialogo.iniciar_dialogo_com_nome("Lorun", [
-            "Você acordou...",
-            "Eu estava começando a achar que não abriria os olhos.",
-            "Consegue ficar de pé?"
+            "You are awake...",
+            "I was beginning to think you would never open your eyes.",
+            "Can you stand?"
         ]);
     }
 }
@@ -45,45 +45,45 @@ else if (
         etapa_conversa = 2;
 
         dialogo.nome_falante = "???";
-        dialogo.texto = "O que devo perguntar?";
+        dialogo.texto = "What should I ask?";
 
         dialogo.iniciar_escolha(
             [
-                "Quem é você?",
-                "Onde estamos?",
-                "O que aconteceu comigo?"
+                "Who are you?",
+                "Where are we?",
+                "What happened to me?"
             ],
             [
                 [
                     {
                         nome: "???",
-                        texto: "Quem é você?"
+                        texto: "Who are you?"
                     },
                     {
                         nome: "Lorun",
-                        texto: "Meu nome é Lorun. Eu vivo nesta floresta."
+                        texto: "My name is Lorun. I live in this forest."
                     }
                 ],
 
                 [
                     {
                         nome: "???",
-                        texto: "Onde estamos?"
+                        texto: "Where are we?"
                     },
                     {
                         nome: "Lorun",
-                        texto: "Nas ruínas de Velmora. A floresta cresceu sobre o que restou."
+                        texto: "In the ruins of Velmora. The forest grew over what remained."
                     }
                 ],
 
                 [
                     {
                         nome: "???",
-                        texto: "O que aconteceu comigo?"
+                        texto: "What happened to me?"
                     },
                     {
                         nome: "Lorun",
-                        texto: "Eu ainda não sei. Encontrei você desacordado perto das ruínas."
+                        texto: "I still do not know. I found you unconscious near the ruins."
                     }
                 ]
             ]
@@ -119,23 +119,23 @@ else if (
         dialogo.iniciar_dialogo([
             {
                 nome: "Lorun",
-                texto: "Espere... onde você encontrou isso?"
+                texto: "Wait... where did you find that?"
             },
             {
                 nome: "???",
-                texto: "Estava mais adiante, perto da água."
+                texto: "Farther ahead, near the water."
             },
             {
                 nome: "Lorun",
-                texto: "É um fragmento de vitral antigo."
+                texto: "It is a fragment of an ancient stained-glass window."
             },
             {
                 nome: "Lorun",
-                texto: "Existe uma passagem adiante que reage à luz dele."
+                texto: "There is a passage ahead that reacts to its light."
             },
             {
                 nome: "Lorun",
-                texto: "Leve-o até lá. Talvez ele mostre o caminho."
+                texto: "Take it there. Maybe it will reveal the way."
             }
         ]);
     }
