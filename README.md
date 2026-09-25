@@ -15,6 +15,14 @@ Soulscapes is a contemplative 2D narrative game about memory, emotions, self-dis
 
 </div>
 
+---
+
+## Preview
+
+![Soulscapes main menu with its watercolor forest interface](./docs/soulscapes-game-preview.png)
+
+The demo combines hand-painted environments, quiet exploration, dialogue, and adjustable sensory settings.
+
 ## Play the demo
 
 **GX.games:** https://gx.games/games/bdwxxw/soulscapes-demo-2026/
