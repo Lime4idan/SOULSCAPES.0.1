@@ -60,7 +60,10 @@ if (!puzzle_ativo) {
         perto_do_vitral
         && !global.vitral_resolvido
         && !dialogo_aberto
-        && keyboard_check_pressed(ord("E"))
+        && (
+            keyboard_check_pressed(ord("E"))
+            || (variable_global_exists("mobile_interact_pressed") && global.mobile_interact_pressed)
+        )
     ) {
         puzzle_ativo = true;
         peca_arrastada = -1;
@@ -132,6 +135,34 @@ var mouse_gui_x =
 var mouse_gui_y =
     device_mouse_y_to_gui(0);
 
+var puzzle_toque_pressionado = mouse_check_button_pressed(mb_left)
+    || (
+        variable_global_exists("mobile_mode")
+        && global.mobile_mode
+        && device_mouse_check_button_pressed(0, mb_left)
+    );
+var puzzle_toque_seguro = mouse_check_button(mb_left)
+    || (
+        variable_global_exists("mobile_mode")
+        && global.mobile_mode
+        && device_mouse_check_button(0, mb_left)
+    );
+var puzzle_toque_solto = mouse_check_button_released(mb_left)
+    || (
+        variable_global_exists("mobile_mode")
+        && global.mobile_mode
+        && device_mouse_check_button_released(0, mb_left)
+    );
+
+var puzzle_botao_voltar = point_in_rectangle(
+    mouse_gui_x,
+    mouse_gui_y,
+    520,
+    652,
+    760,
+    716
+);
+
 
 // ═════════════════════════════════════════════
 // SAIR DO PUZZLE
@@ -139,6 +170,7 @@ var mouse_gui_y =
 if (
     keyboard_check_pressed(vk_escape)
     || keyboard_check_pressed(vk_backspace)
+    || (puzzle_toque_pressionado && puzzle_botao_voltar)
 ) {
     for (
         var sair_i = 0;
@@ -169,7 +201,7 @@ if (
 // ═════════════════════════════════════════════
 // PEGAR UMA PEÇA
 // ═════════════════════════════════════════════
-if (mouse_check_button_pressed(mb_left)) {
+if (puzzle_toque_pressionado) {
     peca_arrastada = -1;
 
     for (
@@ -215,7 +247,7 @@ if (mouse_check_button_pressed(mb_left)) {
 // ═════════════════════════════════════════════
 if (
     peca_arrastada != -1
-    && mouse_check_button(mb_left)
+    && puzzle_toque_seguro
 ) {
     peca_x[peca_arrastada] = clamp(
         mouse_gui_x + offset_mouse_x,
@@ -236,7 +268,7 @@ if (
 // ═════════════════════════════════════════════
 if (
     peca_arrastada != -1
-    && mouse_check_button_released(mb_left)
+    && puzzle_toque_solto
 ) {
     var solta_i = peca_arrastada;
 

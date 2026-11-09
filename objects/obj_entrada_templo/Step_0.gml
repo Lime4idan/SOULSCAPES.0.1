@@ -1,9 +1,12 @@
 // ═════════════════════════════════════════════
-// IMPEDIR EXECUÇÃO DURANTE A TRANSIÇÃO
+// LIMPAR ESTADO ANTIGO DA SALA PERSISTENTE
 // ═════════════════════════════════════════════
-if (entrando_templo) {
-    exit;
-}
+// Room1 continua existindo enquanto o templo está aberto. Ao retornar,
+// "entrando_templo" ainda pode estar verdadeiro e "pode_interagir" pode
+// conter o valor do último frame. Zerar os dois garante que o aviso só seja
+// reativado pela distância atual calculada mais abaixo.
+entrando_templo = false;
+pode_interagir = false;
 
 
 // ═════════════════════════════════════════════
@@ -62,56 +65,36 @@ if (
 // ═════════════════════════════════════════════
 if (
     pode_interagir
-    && keyboard_check_pressed(ord("E"))
+    && current_time >= global.transicao_room_bloqueada_ate
+    && (
+        keyboard_check_pressed(ord("E"))
+        || (variable_global_exists("mobile_interact_pressed") && global.mobile_interact_pressed)
+    )
 ) {
-    var entrada_liberada =
-        variable_global_exists("fragmento_reconhecido")
-        && global.fragmento_reconhecido;
+    entrando_templo = true;
 
+    // Consome o toque que iniciou a troca. Como Room1 e Kiran são
+    // persistentes, sem este bloqueio o mesmo toque pode disparar a saída
+    // da próxima sala e devolver o jogador imediatamente.
+    global.transicao_room_bloqueada_ate = current_time + 450;
+    global.mobile_transition_wait_release = true;
 
-    // ─────────────────────────────────────────
-    // ENTRADA LIBERADA
-    // ─────────────────────────────────────────
-    if (entrada_liberada) {
-        entrando_templo = true;
-
-        if (variable_global_exists("dialogue_open")) {
-            global.dialogue_open = false;
-        }
-
-        if (variable_global_exists("jogo_pausado")) {
-            global.jogo_pausado = false;
-        }
-
-        room_goto(rm_templo);
+    if (variable_global_exists("mobile_interact_pressed")) {
+        global.mobile_interact_pressed = false;
     }
 
-
-    // ─────────────────────────────────────────
-    // ENTRADA AINDA BLOQUEADA
-    // ─────────────────────────────────────────
-    else {
-        var controlador_dialogo =
-            instance_find(obj_dialogo, 0);
-
-        if (controlador_dialogo != noone) {
-            with (controlador_dialogo) {
-                iniciar_dialogo([
-                    {
-                        nome: "Kiran",
-                        texto: "The entrance appears to be sealed..."
-                    },
-                    {
-                        nome: "Kiran",
-                        texto: "Maybe Lorun knows what to do."
-                    }
-                ]);
-            }
-        }
-        else {
-            show_debug_message(
-                "ERROR: obj_dialogo does not exist in Room1."
-            );
-        }
+    with (obj_Kiran) {
+        mobile_interact_buffer = 0;
+        mobile_room_touch_lock = true;
     }
+
+    if (variable_global_exists("dialogue_open")) {
+        global.dialogue_open = false;
+    }
+
+    if (variable_global_exists("jogo_pausado")) {
+        global.jogo_pausado = false;
+    }
+
+    room_goto(rm_templo);
 }

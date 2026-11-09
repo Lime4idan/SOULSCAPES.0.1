@@ -1,13 +1,34 @@
+// O tutorial fica quieto enquanto qualquer tela de pausa está aberta.
+if (
+    variable_global_exists("jogo_pausado")
+    && global.jogo_pausado
+) {
+    exit;
+}
+
 var apertou_controle =
     keyboard_check(ord("A"))
     || keyboard_check(ord("D"))
     || keyboard_check(vk_left)
     || keyboard_check(vk_right)
     || keyboard_check(vk_shift)
+    || keyboard_check_pressed(vk_space)
     || keyboard_check_pressed(ord("Z"))
     || keyboard_check_pressed(ord("X"))
     || keyboard_check_pressed(ord("E"))
-    || keyboard_check_pressed(vk_space);
+    || keyboard_check_pressed(vk_tab)
+    || keyboard_check_pressed(vk_escape)
+    || (
+        variable_global_exists("mobile_mode")
+        && global.mobile_mode
+        && (
+            global.mobile_left
+            || global.mobile_right
+            || global.mobile_jump
+            || global.mobile_interact_pressed
+            || global.mobile_pause_pressed
+        )
+    );
 
 // Começar a contar depois que o jogador usar um controle
 if (apertou_controle) {
@@ -18,12 +39,20 @@ if (apertou_controle) {
 if (controle_usado) {
     tempo_apos_controle++;
 
-    if (tempo_apos_controle > room_speed * 4) {
-        alpha_controles = lerp(
-            alpha_controles,
-            0,
-            0.06
-        );
+    if (tempo_apos_controle > room_speed * 7) {
+        if (
+            variable_global_exists("config_reduzir_animacoes")
+            && global.config_reduzir_animacoes
+        ) {
+            alpha_controles = 0;
+        }
+        else {
+            alpha_controles = lerp(
+                alpha_controles,
+                0,
+                0.06
+            );
+        }
     }
 }
 

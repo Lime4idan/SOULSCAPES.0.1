@@ -2,10 +2,21 @@
 //  LÓGICA DA CÂMERA COM MARGEM (DEADZONE)
 // ─────────────────────────────────────────────
 
-var _cam = view_camera[0];                 // câmera ativa
+// Se a room não tiver um viewport ativo, não tente acessar uma câmera inválida.
+if (!view_enabled || !view_visible[0]) exit;
+
+var _cam = view_get_camera(0);             // câmera ativa
+if (_cam == -1) exit;                      // nenhuma câmera atribuída
+
 var _vw  = camera_get_view_width(_cam);    // 1280
 var _vh  = camera_get_view_height(_cam);   // 811
-var _player = follow_object;
+var _player = instance_find(follow_object, 0);
+
+// Corrige imediatamente uma posição inicial fora da room.
+// Sem isso, o lerp mostrava a área vazia enquanto a câmera voltava lentamente.
+var _max_x = max(0, room_width - _vw);
+x = clamp(x, 0, _max_x);
+target_x = clamp(target_x, 0, _max_x);
 
 // Se não houver jogador, sai
 if (!instance_exists(_player)) exit;
@@ -22,8 +33,8 @@ if (_player.x < x + margin_left) {
 }
 
 // Trava a câmera dentro dos limites da sala (evita buracos pretos)
-// A sala tem 1938 de largura, então a câmera pode ir de 0 até (1938 - 1280) = 658
-target_x = clamp(target_x, 0, room_width - _vw);
+// Calcula o limite usando o tamanho atual da room e da view.
+target_x = clamp(target_x, 0, _max_x);
 
 // Aplica a suavização (lerp)
 x = lerp(x, target_x, smooth_factor);

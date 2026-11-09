@@ -1,5 +1,6 @@
 // Criar a variável ANTES de qualquer instance_destroy
 musica_jogo_id = noone;
+musica_jogo_asset = -1;
 
 // O controlador continua entre as rooms
 persistent = true;
@@ -17,8 +18,11 @@ if (!variable_global_exists("config_volume_musica")) {
 
 // Começar a música caso esteja dentro do jogo
 if (room != rm_menu) {
+    musica_jogo_asset = room == Room6
+        ? snd_musica_menu
+        : snd_musica_jogo;
     musica_jogo_id = audio_play_sound(
-        snd_musica_jogo,
+        musica_jogo_asset,
         0,
         true
     );

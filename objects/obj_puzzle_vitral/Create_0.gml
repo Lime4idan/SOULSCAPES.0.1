@@ -54,17 +54,17 @@ tempo_conclusao = 0;
 // Faixa inferior do puzzle
 // ═════════════════════════════════════════════
 peca_inicio_x = [
-    400,
-    560,
-    720,
-    880
+    875,
+    1065,
+    875,
+    1065
 ];
 
 peca_inicio_y = [
-    620,
-    620,
-    620,
-    620
+    290,
+    290,
+    470,
+    470
 ];
 
 
@@ -72,17 +72,17 @@ peca_inicio_y = [
 // POSIÇÕES CORRETAS NO VITRAL
 // ═════════════════════════════════════════════
 peca_alvo_x = [
-    640, // superior
-    525, // esquerda
-    755, // direita
-    640  // inferior
+    435, // superior
+    335, // esquerda
+    535, // direita
+    435  // inferior
 ];
 
 peca_alvo_y = [
-    270,
+    288,
     405,
     405,
-    515
+    520
 ];
 
 
@@ -119,10 +119,10 @@ peca_colocada = [
 // CORES DOS FRAGMENTOS
 // ═════════════════════════════════════════════
 cores_fragmentos = [
-    make_color_rgb(145, 184, 196),
-    make_color_rgb(170, 177, 207),
-    make_color_rgb(173, 194, 176),
-    make_color_rgb(192, 174, 203)
+    make_color_rgb(242, 166, 199), // rosa pastel
+    make_color_rgb(190, 174, 235), // lilás
+    make_color_rgb(145, 213, 183), // verde-menta
+    make_color_rgb(145, 199, 235)  // azul-claro
 ];
 
 

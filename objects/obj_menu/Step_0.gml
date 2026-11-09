@@ -1,3 +1,164 @@
+// Manter as preferências globais atualizadas enquanto o jogador mexe nelas.
+// F10 permite testar todo o fluxo de toque no computador sem mudar o build.
+if (keyboard_check_pressed(vk_f10)) {
+    global.mobile_mode = !global.mobile_mode;
+}
+
+// Navegadores só aceitam a solicitação de tela cheia a partir de um gesto do
+// jogador. O primeiro toque no menu é esse gesto e continua executando o botão
+// normalmente no mesmo frame.
+if (
+    global.mobile_mode
+    && variable_global_exists("mobile_browser")
+    && global.mobile_browser
+    && !global.mobile_fullscreen_solicitado
+    && device_mouse_check_button_pressed(0, mb_left)
+) {
+    window_set_fullscreen(true);
+    global.mobile_fullscreen_solicitado = true;
+}
+
+var menu_toque_pressionado = mouse_check_button_pressed(mb_left)
+    || (
+        global.mobile_mode
+        && device_mouse_check_button_pressed(0, mb_left)
+    );
+var menu_toque_seguro = mouse_check_button(mb_left)
+    || (
+        global.mobile_mode
+        && device_mouse_check_button(0, mb_left)
+    );
+
+// O botao acompanha tanto o save local quanto a copia baixada do Supabase.
+botao_ativo[1] = variable_global_exists("soul_save_exists")
+    && global.soul_save_exists;
+
+global.config_volume_musica = config_volume_musica;
+global.config_volume_sons = config_volume_sons;
+global.config_baixo_estimulo = config_baixo_estimulo;
+global.config_reduzir_animacoes = config_reduzir_animacoes;
+global.config_velocidade_texto = config_velocidade_texto;
+global.config_tamanho_texto = config_tamanho_texto;
+global.config_contraste = config_contraste;
+
+var configuracao_mudou =
+    config_anterior_musica != config_volume_musica
+    || config_anterior_sons != config_volume_sons
+    || config_anterior_baixo != config_baixo_estimulo
+    || config_anterior_animacoes != config_reduzir_animacoes
+    || config_anterior_velocidade != config_velocidade_texto
+    || config_anterior_tamanho != config_tamanho_texto
+    || config_anterior_contraste != config_contraste;
+
+if (configuracao_mudou) {
+    config_anterior_musica = config_volume_musica;
+    config_anterior_sons = config_volume_sons;
+    config_anterior_baixo = config_baixo_estimulo;
+    config_anterior_animacoes = config_reduzir_animacoes;
+    config_anterior_velocidade = config_velocidade_texto;
+    config_anterior_tamanho = config_tamanho_texto;
+    config_anterior_contraste = config_contraste;
+    config_salvar_atraso = max(1, round(room_speed * 0.25));
+}
+
+if (config_salvar_atraso > 0) {
+    config_salvar_atraso--;
+
+    if (config_salvar_atraso <= 0) {
+        global.salvar_configuracoes();
+    }
+}
+
+// ═════════════════════════════════════════════
+// CONTA OPCIONAL E SAVE NA NUVEM
+// ═════════════════════════════════════════════
+if (mostrando_conta) {
+    var conta_mx = device_mouse_x_to_gui(0);
+    var conta_my = device_mouse_y_to_gui(0);
+    var conta_conectada = variable_global_exists("soul_account_guest")
+        && !global.soul_account_guest;
+    var conta_ocupada = variable_global_exists("soul_account_busy")
+        && global.soul_account_busy;
+
+    conta_mouse_sobre = -1;
+
+    if (!conta_conectada) {
+        if (point_in_rectangle(conta_mx, conta_my, 336, 308, 944, 386)) conta_mouse_sobre = 0;
+        if (point_in_rectangle(conta_mx, conta_my, 336, 398, 944, 476)) conta_mouse_sobre = 1;
+        if (point_in_rectangle(conta_mx, conta_my, 410, 500, 604, 568)) conta_mouse_sobre = 2;
+        if (point_in_rectangle(conta_mx, conta_my, 680, 500, 876, 568)) conta_mouse_sobre = 3;
+        if (point_in_rectangle(conta_mx, conta_my, 465, 712, 815, 752)) conta_mouse_sobre = 6;
+        if (point_in_rectangle(conta_mx, conta_my, 455, 590, 826, 658)) conta_mouse_sobre = 4;
+
+        if (menu_toque_pressionado) {
+            if (conta_mouse_sobre == 0) {
+                conta_campo_ativo = 0;
+                keyboard_string = conta_email;
+            }
+            else if (conta_mouse_sobre == 1) {
+                conta_campo_ativo = 1;
+                keyboard_string = conta_senha;
+            }
+            else if (!conta_ocupada && conta_mouse_sobre == 2) {
+                global.soul_account_sign_in(conta_email, conta_senha);
+            }
+            else if (!conta_ocupada && conta_mouse_sobre == 3) {
+                global.soul_account_sign_up(conta_email, conta_senha);
+            }
+            else if (!conta_ocupada && conta_mouse_sobre == 6) {
+                global.soul_account_resend(conta_email);
+            }
+            else if (conta_mouse_sobre == 4) {
+                mostrando_conta = false;
+                conta_campo_ativo = -1;
+                conta_senha = "";
+                keyboard_string = "";
+            }
+        }
+
+        if (keyboard_check_pressed(vk_tab)) {
+            conta_campo_ativo = conta_campo_ativo == 0 ? 1 : 0;
+            keyboard_string = conta_campo_ativo == 0 ? conta_email : conta_senha;
+            global.tocar_som_ui(1.03);
+        }
+
+        if (conta_campo_ativo == 0) {
+            conta_email = string_copy(keyboard_string, 1, 80);
+        }
+        else if (conta_campo_ativo == 1) {
+            conta_senha = string_copy(keyboard_string, 1, 64);
+        }
+
+        if (keyboard_check_pressed(vk_enter) && !conta_ocupada) {
+            global.soul_account_sign_in(conta_email, conta_senha);
+        }
+    }
+    else {
+        conta_campo_ativo = -1;
+        conta_senha = "";
+        keyboard_string = "";
+        if (point_in_rectangle(conta_mx, conta_my, 340, 530, 590, 610)) conta_mouse_sobre = 5;
+        if (point_in_rectangle(conta_mx, conta_my, 710, 530, 960, 610)) conta_mouse_sobre = 4;
+
+        if (menu_toque_pressionado && conta_mouse_sobre == 5 && !conta_ocupada) {
+            global.soul_account_logout();
+        }
+        else if (menu_toque_pressionado && conta_mouse_sobre == 4) {
+            mostrando_conta = false;
+        }
+    }
+
+    if (keyboard_check_pressed(vk_escape) || keyboard_check_pressed(vk_backspace) && conta_campo_ativo == -1) {
+        mostrando_conta = false;
+        conta_campo_ativo = -1;
+        conta_senha = "";
+        keyboard_string = "";
+    }
+
+    exit;
+}
+
+
 // ═════════════════════════════════════════════
 // TELA DE CONFIGURAÇÕES
 // ═════════════════════════════════════════════
@@ -58,6 +219,8 @@ if (mostrando_configuracoes) {
         if (config_opcao_atual < 0) {
             config_opcao_atual = 7;
         }
+
+        global.tocar_som_ui(0.94);
     }
 
     if (
@@ -69,13 +232,15 @@ if (mostrando_configuracoes) {
         if (config_opcao_atual > 7) {
             config_opcao_atual = 0;
         }
+
+        global.tocar_som_ui(1.06);
     }
 
 
     // ─────────────────────────────────────────
     // COMEÇAR A ARRASTAR SLIDER
     // ─────────────────────────────────────────
-    if (mouse_check_button_pressed(mb_left)) {
+    if (menu_toque_pressionado) {
         if (
             point_in_rectangle(
                 cfg_mx,
@@ -108,7 +273,7 @@ if (mostrando_configuracoes) {
     // ─────────────────────────────────────────
     // ATUALIZAR SLIDERS
     // ─────────────────────────────────────────
-    if (mouse_check_button(mb_left)) {
+    if (menu_toque_seguro) {
         if (config_arrastando == 0) {
             config_volume_musica = clamp(
                 (cfg_mx - cfg_barra_x1)
@@ -128,6 +293,11 @@ if (mostrando_configuracoes) {
         }
     }
     else {
+        if (config_arrastando == 1) {
+            global.config_volume_sons = config_volume_sons;
+            global.tocar_som_ui(1.10);
+        }
+
         config_arrastando = -1;
     }
 
@@ -202,13 +372,16 @@ if (mostrando_configuracoes) {
                 );
             break;
         }
+
+        global.config_volume_sons = config_volume_sons;
+        global.tocar_som_ui(cfg_direita ? 1.08 : 0.92);
     }
 
 
     // ─────────────────────────────────────────
     // CLIQUES NOS INTERRUPTORES
     // ─────────────────────────────────────────
-    if (mouse_check_button_pressed(mb_left)) {
+    if (menu_toque_pressionado) {
         if (
             point_in_rectangle(
                 cfg_mx,
@@ -221,6 +394,7 @@ if (mostrando_configuracoes) {
         ) {
             config_baixo_estimulo =
                 !config_baixo_estimulo;
+            global.tocar_som_ui(1.05);
         }
 
         if (
@@ -235,6 +409,7 @@ if (mostrando_configuracoes) {
         ) {
             config_reduzir_animacoes =
                 !config_reduzir_animacoes;
+            global.tocar_som_ui(1.05);
         }
     }
 
@@ -242,7 +417,7 @@ if (mostrando_configuracoes) {
     // ─────────────────────────────────────────
     // CLIQUES NAS SETAS DAS OPÇÕES
     // ─────────────────────────────────────────
-    if (mouse_check_button_pressed(mb_left)) {
+    if (menu_toque_pressionado) {
 
         // Velocidade do texto: esquerda
         if (
@@ -259,6 +434,7 @@ if (mostrando_configuracoes) {
                 0,
                 config_velocidade_texto - 1
             );
+            global.tocar_som_ui(0.92);
         }
 
         // Velocidade do texto: direita
@@ -276,6 +452,7 @@ if (mostrando_configuracoes) {
                 2,
                 config_velocidade_texto + 1
             );
+            global.tocar_som_ui(1.08);
         }
 
 
@@ -294,6 +471,7 @@ if (mostrando_configuracoes) {
                 0,
                 config_tamanho_texto - 1
             );
+            global.tocar_som_ui(0.92);
         }
 
         // Tamanho do texto: direita
@@ -311,6 +489,7 @@ if (mostrando_configuracoes) {
                 2,
                 config_tamanho_texto + 1
             );
+            global.tocar_som_ui(1.08);
         }
 
 
@@ -326,6 +505,7 @@ if (mostrando_configuracoes) {
             )
         ) {
             config_contraste = 0;
+            global.tocar_som_ui(0.92);
         }
 
         // Contraste: direita
@@ -340,30 +520,35 @@ if (mostrando_configuracoes) {
             )
         ) {
             config_contraste = 1;
+            global.tocar_som_ui(1.08);
         }
     }
 
 
     // ─────────────────────────────────────────
-    // ENTER OU E
+    // ESPAÇO, ENTER OU E
     // ─────────────────────────────────────────
     if (
-        keyboard_check_pressed(vk_enter)
+        keyboard_check_pressed(vk_space)
+        || keyboard_check_pressed(vk_enter)
         || keyboard_check_pressed(ord("E"))
     ) {
         switch (config_opcao_atual) {
             case 2:
                 config_baixo_estimulo =
                     !config_baixo_estimulo;
+                global.tocar_som_ui(1.05);
             break;
 
             case 3:
                 config_reduzir_animacoes =
                     !config_reduzir_animacoes;
+                global.tocar_som_ui(1.05);
             break;
 
             case 7:
                 mostrando_configuracoes = false;
+                global.salvar_configuracoes();
             break;
         }
     }
@@ -381,15 +566,17 @@ if (mostrando_configuracoes) {
             765,
             cfg_y[7] + 30
         )
-        && mouse_check_button_pressed(mb_left)
+        && menu_toque_pressionado
     ) {
         mostrando_configuracoes = false;
+        global.salvar_configuracoes();
     }
 
 
     // Voltar com Esc
     if (keyboard_check_pressed(vk_escape)) {
         mostrando_configuracoes = false;
+        global.salvar_configuracoes();
     }
 
 
@@ -413,10 +600,10 @@ if (mostrando_creditos) {
     var cred_mx = device_mouse_x_to_gui(0);
     var cred_my = device_mouse_y_to_gui(0);
 
-    var cred_voltar_x1 = 515;
-    var cred_voltar_y1 = 570;
-    var cred_voltar_x2 = 765;
-    var cred_voltar_y2 = 625;
+    var cred_voltar_x1 = 455;
+    var cred_voltar_y1 = 620;
+    var cred_voltar_x2 = 850;
+    var cred_voltar_y2 = 705;
 
     var cred_mouse_voltar = point_in_rectangle(
         cred_mx,
@@ -441,7 +628,7 @@ if (mostrando_creditos) {
     // Voltar pelo mouse
     if (
         cred_mouse_voltar
-        && mouse_check_button_pressed(mb_left)
+        && menu_toque_pressionado
     ) {
         mostrando_creditos = false;
     }
@@ -453,7 +640,9 @@ if (mostrando_creditos) {
 // ═════════════════════════════════════════════
 // MENU PRINCIPAL
 // ═════════════════════════════════════════════
-tempo_menu += 0.07;
+if (!config_reduzir_animacoes) {
+    tempo_menu += 0.07;
+}
 
 var menu_mx = device_mouse_x_to_gui(0);
 var menu_my = device_mouse_y_to_gui(0);
@@ -519,6 +708,8 @@ if (
             break;
         }
     }
+
+    global.tocar_som_ui(0.94);
 }
 
 
@@ -543,6 +734,8 @@ if (
             break;
         }
     }
+
+    global.tocar_som_ui(1.06);
 }
 
 
@@ -561,18 +754,18 @@ for (
     hover_anim[anim_i] = lerp(
         hover_anim[anim_i],
         anim_selecionado ? 1 : 0,
-        0.16
+        config_reduzir_animacoes ? 1 : 0.16
     );
 
     var anim_clicando =
         mouse_sobre == anim_i
-        && mouse_check_button(mb_left)
+        && menu_toque_seguro
         && botao_ativo[anim_i];
 
     click_anim[anim_i] = lerp(
         click_anim[anim_i],
         anim_clicando ? 1 : 0,
-        0.28
+        config_reduzir_animacoes ? 1 : 0.28
     );
 }
 
@@ -596,7 +789,7 @@ if (
 
 // Confirmar com mouse
 if (
-    mouse_check_button_pressed(mb_left)
+    menu_toque_pressionado
     && mouse_sobre != -1
     && botao_ativo[mouse_sobre]
 ) {
@@ -609,6 +802,8 @@ if (
 // EXECUTAR A OPÇÃO DO MENU
 // ═════════════════════════════════════════════
 if (opcao_confirmada != -1) {
+    global.tocar_som_ui(1.12);
+
     switch (opcao_confirmada) {
 
         // ─────────────────────────────────────
@@ -642,10 +837,14 @@ if (opcao_confirmada != -1) {
             global.config_contraste =
                 config_contraste;
 
+            global.salvar_configuracoes();
+
 
             // Reiniciar o diálogo inicial
             global.dialogue_open = false;
             global.dialogo_inicial_mostrado = false;
+            global.tutorial_controles_mostrado = false;
+            global.tutorial_controles_pendente = false;
 
 
             // Reiniciar a pausa
@@ -654,7 +853,44 @@ if (opcao_confirmada != -1) {
 
             // Reiniciar o progresso da demo
             global.tem_fragmento = false;
+            global.tem_espada_fragmento = false;
+            global.vida_kiran_max = 100;
+            global.vida_kiran = 100;
+            global.guardas_recusados = [0, 0, 0, 0];
             global.fragmento_reconhecido = false;
+            global.lorun_apresentada = false;
+            global.florakii_roteiro_visto = false;
+            global.guardas_roteiro_visto = [false, false, false, false];
+            global.vitral_resolvido = false;
+            global.fragmentos_vitral = [false, false, false, false];
+            global.voltando_do_templo = false;
+            global.inventario_itens = [];
+            global.inventario_armas = [];
+            global.inventario_roupas = [];
+            global.inventario_colecionaveis = [];
+            global.inventario_missoes = [];
+            global.inimigos_derrotados = [false, false, false, false];
+            global.itens_curativos_coletados = [];
+            global.comandante_partiu = false;
+            global.comandante_conhecida = false;
+            global.encontro_rainha_iniciado = false;
+            global.capitulo_concluido = false;
+            global.pontos_florakii = 0;
+            global.pontos_dahlia = 0;
+            global.pontos_neutro = 0;
+            global.escolhas_rota_usadas = [];
+            global.rotas_identidade_carregadas = true;
+            ini_open("soulscapes_rotas.ini");
+            ini_section_delete("rotas");
+            ini_section_delete("escolhas");
+            ini_write_real("rotas", "florakii", 0);
+            ini_write_real("rotas", "dahlia", 0);
+            ini_write_real("rotas", "neutro", 0);
+            ini_close();
+
+            if (variable_global_exists("soul_prepare_new_game")) {
+                global.soul_prepare_new_game();
+            }
 
 
             // Ir para a floresta inicial
@@ -666,16 +902,34 @@ if (opcao_confirmada != -1) {
 
         // ─────────────────────────────────────
         // CONTINUAR
-        // Atualmente está desativado
         // ─────────────────────────────────────
         case 1:
+            if (
+                variable_global_exists("soul_continue_game")
+                && global.soul_continue_game()
+            ) {
+                if (audio_is_playing(musica_menu_id)) {
+                    audio_stop_sound(musica_menu_id);
+                }
+            }
+        break;
+
+
+        // ─────────────────────────────────────
+        // CONTA
+        // ─────────────────────────────────────
+        case 2:
+            mostrando_conta = true;
+            conta_campo_ativo = -1;
+            conta_mouse_sobre = -1;
+            keyboard_string = "";
         break;
 
 
         // ─────────────────────────────────────
         // CONFIGURAÇÕES
         // ─────────────────────────────────────
-        case 2:
+        case 3:
             mostrando_configuracoes = true;
 
             config_opcao_atual = 0;
@@ -687,7 +941,7 @@ if (opcao_confirmada != -1) {
         // ─────────────────────────────────────
         // CRÉDITOS
         // ─────────────────────────────────────
-        case 3:
+        case 4:
             mostrando_creditos = true;
         break;
     }

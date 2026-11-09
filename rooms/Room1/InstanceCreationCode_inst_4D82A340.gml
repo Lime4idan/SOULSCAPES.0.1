@@ -1,2 +1,1 @@
-indice_fragmento = 2
-;
+indice_fragmento = 2;

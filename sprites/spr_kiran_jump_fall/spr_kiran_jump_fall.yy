@@ -12,16 +12,15 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"v1","%Name":"105a134b-c170-4b02-919c-8a671ded94bc","name":"105a134b-c170-4b02-919c-8a671ded94bc","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"d90e12d0-100a-4fce-82c9-883c770d9d96","name":"d90e12d0-100a-4fce-82c9-883c770d9d96","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"v1","%Name":"3f281019-8757-4edc-ac8d-f835faf0ddce","name":"3f281019-8757-4edc-ac8d-f835faf0ddce","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"9dcf39cb-349e-47de-96b5-a33072364da9","name":"9dcf39cb-349e-47de-96b5-a33072364da9","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"v1","%Name":"5e1173ba-9702-4898-94f9-f09b1684e7db","name":"5e1173ba-9702-4898-94f9-f09b1684e7db","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
-  "height":147,
+  "height":100,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"cef3d35c-5781-457b-937b-3695f4739fc9","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"cef3d35c-5781-457b-937b-3695f4739fc9","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":false,},
+    {"$GMImageLayer":"","%Name":"cef3d35c-5781-457b-937b-3695f4739fc9","blendMode":0,"displayName":"Layer 1","isLocked":false,"name":"cef3d35c-5781-457b-937b-3695f4739fc9","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
     {"$GMImageLayer":"","%Name":"3ec45931-3ab4-45f1-abac-8a69b0e98c47","blendMode":0,"displayName":"default","isLocked":false,"name":"3ec45931-3ab4-45f1-abac-8a69b0e98c47","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_kiran_jump_fall",
@@ -52,7 +51,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":3.0,
+    "length":2.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -72,14 +71,11 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"105a134b-c170-4b02-919c-8a671ded94bc","path":"sprites/spr_kiran_jump_fall/spr_kiran_jump_fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"98886edb-464b-499f-a3a0-0d98416f19aa","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"9dcf39cb-349e-47de-96b5-a33072364da9","path":"sprites/spr_kiran_jump_fall/spr_kiran_jump_fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"f691a132-ec5e-446e-b201-7a1e5091755b","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d90e12d0-100a-4fce-82c9-883c770d9d96","path":"sprites/spr_kiran_jump_fall/spr_kiran_jump_fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"3d69d175-aeaa-47a8-860d-301990631124","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
-            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3f281019-8757-4edc-ac8d-f835faf0ddce","path":"sprites/spr_kiran_jump_fall/spr_kiran_jump_fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"a48bc104-7dec-4e9c-8a5a-47eca0005380","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5e1173ba-9702-4898-94f9-f09b1684e7db","path":"sprites/spr_kiran_jump_fall/spr_kiran_jump_fall.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"f13c125b-b1bb-44eb-b422-6527434b7e7b","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
@@ -95,5 +91,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":95,
+  "width":100,
 }

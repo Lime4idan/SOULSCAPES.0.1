@@ -1,154 +1,193 @@
-pode_interagir = false;
+// ─────────────────────────────────────────────
+// FLUTUAÇÃO SUAVE
+// ─────────────────────────────────────────────
+var lorun_pausada =
+    variable_global_exists("jogo_pausado")
+    && global.jogo_pausado;
 
-var jogador = instance_nearest(x, y, obj_Kiran);
+var lorun_reduzir_movimento =
+    variable_global_exists("config_reduzir_animacoes")
+    && global.config_reduzir_animacoes;
 
-if (instance_exists(jogador)) {
-    var distancia = point_distance(x, y, jogador.x, jogador.y);
-
-    if (distancia <= distancia_interacao) {
-        pode_interagir = true;
-    }
+if (!lorun_pausada && !lorun_reduzir_movimento) {
+    lorun_aura_tempo += lorun_flutuar_velocidade;
 }
 
+var lorun_flutuar_destino = lorun_reduzir_movimento
+    ? 0
+    : sin(lorun_aura_tempo) * lorun_flutuar_altura;
+
+lorun_flutuar_y = lerp(
+    lorun_flutuar_y,
+    lorun_flutuar_destino,
+    lorun_reduzir_movimento ? 0.12 : 0.18
+);
+
+
 // ─────────────────────────────────────────────
-// ETAPA 0: PRIMEIRO ENCONTRO
+// DISTÂNCIA DE INTERAÇÃO
+// ─────────────────────────────────────────────
+pode_interagir = false;
+
+if (instance_exists(obj_Kiran)) {
+    var jogador = instance_nearest(x, y, obj_Kiran);
+    var distancia = point_distance(x, y, jogador.x, jogador.y);
+    pode_interagir = distancia <= distancia_interacao;
+}
+
+if (lorun_pausada) {
+    exit;
+}
+
+var dialogo = instance_find(obj_dialogo, 0);
+
+if (!instance_exists(dialogo)) {
+    exit;
+}
+
+
+// ─────────────────────────────────────────────
+// PRIMEIRO ENCONTRO
 // ─────────────────────────────────────────────
 if (
     etapa_conversa == 0
     && pode_interagir
     && !global.dialogue_open
-    && keyboard_check_pressed(ord("E"))
+    && (
+        keyboard_check_pressed(ord("E"))
+        || (variable_global_exists("mobile_interact_pressed") && global.mobile_interact_pressed)
+    )
 ) {
-    var dialogo = instance_find(obj_dialogo, 0);
+    etapa_conversa = 1;
+    global.lorun_apresentada = true;
+    dialogo.iniciar_dialogo(lorun_intro);
 
-    if (instance_exists(dialogo)) {
-        etapa_conversa = 1;
-
-        dialogo.iniciar_dialogo_com_nome("Lorun", [
-            "You are awake...",
-            "I was beginning to think you would never open your eyes.",
-            "Can you stand?"
-        ]);
-    }
+    exit;
 }
 
-// ─────────────────────────────────────────────
-// ETAPA 1: ABRE AS ESCOLHAS
-// ─────────────────────────────────────────────
-else if (
+
+// Primeira escolha do roteiro novo.
+if (
     etapa_conversa == 1
     && !global.dialogue_open
 ) {
-    var dialogo = instance_find(obj_dialogo, 0);
-
-    if (instance_exists(dialogo)) {
-        etapa_conversa = 2;
-
-        dialogo.nome_falante = "???";
-        dialogo.texto = "What should I ask?";
-
-        dialogo.iniciar_escolha(
-            [
-                "Who are you?",
-                "Where are we?",
-                "What happened to me?"
-            ],
-            [
-                [
-                    {
-                        nome: "???",
-                        texto: "Who are you?"
-                    },
-                    {
-                        nome: "Lorun",
-                        texto: "My name is Lorun. I live in this forest."
-                    }
-                ],
-
-                [
-                    {
-                        nome: "???",
-                        texto: "Where are we?"
-                    },
-                    {
-                        nome: "Lorun",
-                        texto: "In the ruins of Velmora. The forest grew over what remained."
-                    }
-                ],
-
-                [
-                    {
-                        nome: "???",
-                        texto: "What happened to me?"
-                    },
-                    {
-                        nome: "Lorun",
-                        texto: "I still do not know. I found you unconscious near the ruins."
-                    }
-                ]
-            ]
-        );
-    }
+    etapa_conversa = 2;
+    dialogo.nome_falante = "Kiran";
+    dialogo.texto = "O que Kiran pergunta?";
+    dialogo.iniciar_escolha(lorun_opcoes1, lorun_rotas1, "lorun_primeira_escolha");
+    exit;
 }
 
-// ─────────────────────────────────────────────
-// ETAPA 2: ESPERA O JOGADOR PEGAR O FRAGMENTO
-// ─────────────────────────────────────────────
-else if (
+// Todas as primeiras respostas retornam à reflexão sobre identidade.
+if (
     etapa_conversa == 2
     && !global.dialogue_open
 ) {
     etapa_conversa = 3;
+    dialogo.iniciar_dialogo(lorun_continuacao);
+    exit;
 }
 
-// ─────────────────────────────────────────────
-// ETAPA 3: JOGADOR VOLTA COM O FRAGMENTO
-// ─────────────────────────────────────────────
-else if (
+// Segunda escolha do primeiro encontro.
+if (
     etapa_conversa == 3
-    && global.tem_fragmento
-    && pode_interagir
     && !global.dialogue_open
-    && keyboard_check_pressed(ord("E"))
 ) {
-    var dialogo = instance_find(obj_dialogo, 0);
-
-    if (instance_exists(dialogo)) {
-        etapa_conversa = 4;
-
-        dialogo.iniciar_dialogo([
-            {
-                nome: "Lorun",
-                texto: "Wait... where did you find that?"
-            },
-            {
-                nome: "???",
-                texto: "Farther ahead, near the water."
-            },
-            {
-                nome: "Lorun",
-                texto: "It is a fragment of an ancient stained-glass window."
-            },
-            {
-                nome: "Lorun",
-                texto: "There is a passage ahead that reacts to its light."
-            },
-            {
-                nome: "Lorun",
-                texto: "Take it there. Maybe it will reveal the way."
-            }
-        ]);
-    }
+    etapa_conversa = 4;
+    dialogo.nome_falante = "Kiran";
+    dialogo.texto = "O que Kiran sente sobre sua identidade?";
+    dialogo.iniciar_escolha(lorun_opcoes2, lorun_rotas2, "lorun_identidade");
+    exit;
 }
 
-// ─────────────────────────────────────────────
-// ETAPA 4: ENCERRA A CONVERSA SOBRE O FRAGMENTO
-// ─────────────────────────────────────────────
-else if (
+// O vitral abre uma terceira escolha de identidade.
+if (
     etapa_conversa == 4
     && !global.dialogue_open
 ) {
     etapa_conversa = 5;
+    dialogo.iniciar_dialogo(lorun_vitral_intro);
+    exit;
+}
+
+if (
+    etapa_conversa == 5
+    && !global.dialogue_open
+) {
+    etapa_conversa = 6;
+    dialogo.nome_falante = "Kiran";
+    dialogo.texto = "O que Kiran pensa sobre o vitral?";
+    dialogo.iniciar_escolha(lorun_opcoes3, lorun_rotas3, "lorun_vitral");
+    exit;
+}
+
+if (
+    etapa_conversa == 6
+    && !global.dialogue_open
+) {
+    etapa_conversa = 7;
+    dialogo.iniciar_dialogo(lorun_oferendas_intro);
+    exit;
+}
+
+if (
+    etapa_conversa == 7
+    && !global.dialogue_open
+) {
+    etapa_conversa = 8;
+    dialogo.nome_falante = "Kiran";
+    dialogo.texto = "O que Kiran pergunta sobre as oferendas?";
+    dialogo.iniciar_escolha(lorun_opcoes4, lorun_rotas4, "lorun_oferendas");
+    exit;
+}
+
+if (
+    etapa_conversa == 8
+    && !global.dialogue_open
+) {
+    etapa_conversa = 9;
+    dialogo.iniciar_dialogo(lorun_final);
+    exit;
+}
+
+if (
+    etapa_conversa == 9
+    && !global.dialogue_open
+) {
+    etapa_conversa = 10;
     conversa_finalizada = true;
-    global.fragmento_reconhecido = true;
+}
+
+
+// ─────────────────────────────────────────────
+// CONVERSAS REPETÍVEIS
+// ─────────────────────────────────────────────
+if (
+    etapa_conversa == 10
+    && pode_interagir
+    && !global.dialogue_open
+    && (
+        keyboard_check_pressed(ord("E"))
+        || (variable_global_exists("mobile_interact_pressed") && global.mobile_interact_pressed)
+    )
+) {
+    etapa_conversa = 11;
+    abrir_assuntos_lorun(dialogo);
+}
+
+// Aguardar o assunto repetível e registrar a apresentação da lâmina.
+if (
+    etapa_conversa == 11
+    && !global.dialogue_open
+) {
+    if (
+        opcao_fragmento_indice >= 0
+        && dialogo.ultima_escolha_contexto == "lorun_assuntos"
+        && dialogo.ultima_opcao_escolhida == opcao_fragmento_indice
+        && global.tem_fragmento
+    ) {
+        global.fragmento_reconhecido = true;
+    }
+
+    etapa_conversa = 10;
 }

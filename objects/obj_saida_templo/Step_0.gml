@@ -52,8 +52,26 @@ var dialogo_aberto =
 if (
     pode_sair
     && !dialogo_aberto
-    && keyboard_check_pressed(ord("E"))
+    && current_time >= global.transicao_room_bloqueada_ate
+    && (
+        keyboard_check_pressed(ord("E"))
+        || (variable_global_exists("mobile_interact_pressed") && global.mobile_interact_pressed)
+    )
 ) {
+    // Impede o toque usado para sair do templo de alcançar a entrada da
+    // Room1 no frame seguinte. O spawn fica a apenas 96 px da entrada.
+    global.transicao_room_bloqueada_ate = current_time + 450;
+    global.mobile_transition_wait_release = true;
+
+    if (variable_global_exists("mobile_interact_pressed")) {
+        global.mobile_interact_pressed = false;
+    }
+
+    with (obj_Kiran) {
+        mobile_interact_buffer = 0;
+        mobile_room_touch_lock = true;
+    }
+
     global.voltando_do_templo = true;
     global.dialogue_open = false;
 

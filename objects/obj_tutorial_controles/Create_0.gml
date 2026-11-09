@@ -20,9 +20,9 @@ desenhar_tecla = function(
 ) {
     var altura = 30;
 
-    var cor_fundo = make_color_rgb(229, 229, 242);
-    var cor_borda = make_color_rgb(103, 108, 161);
-    var cor_texto = make_color_rgb(57, 65, 103);
+    var cor_fundo = make_color_rgb(244, 239, 250);
+    var cor_borda = make_color_rgb(126, 119, 181);
+    var cor_texto = make_color_rgb(68, 71, 113);
 
     // Sombra
     draw_set_alpha(0.12 * alpha_controles);
@@ -71,4 +71,9 @@ desenhar_tecla = function(
         _y + altura / 2,
         _texto
     );
+
+    // A tecla usa texto centralizado, mas as descrições do cartão usam esquerda.
+    // Restaurar aqui evita que uma linha seja desenhada sobre a própria tecla.
+    draw_set_halign(fa_left);
+    draw_set_valign(fa_middle);
 };
